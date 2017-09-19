@@ -33,6 +33,11 @@ public class UserAdminAction extends CrudActionSupport<User, String> {
 	@Override
 	public String list() throws Exception {
 		try{
+			HttpServletRequest request=Struts2Utils.getRequest();
+			String surveyState = request.getParameter("status");
+			if(surveyState==null||"".equals(surveyState)){
+				entity.setStatus(null);
+			}
 			page=userManager.findPage(page,entity);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -49,6 +54,7 @@ public class UserAdminAction extends CrudActionSupport<User, String> {
 	@Override
 	public String save() throws Exception {
 		HttpServletRequest request= Struts2Utils.getRequest();
+		entity.setStatus(1);
 		userManager.adminSave(entity,null);
 		return RELOAD;
 	}

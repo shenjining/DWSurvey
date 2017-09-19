@@ -848,7 +848,7 @@ function substring(json) {
 					<div style="padding: 15px 25px;overflow: auto;">
 							<div style="overflow: auto;">
 								<div style="float: left;" >
-									<a href="${ctx }/da/survey-report!defaultReport.action?surveyId=${surveyId }" class="dw_btn025 tabpic active"><i class="fa fa-tasks"></i>&nbsp;报表</a>
+									<a href="${ctx }/da/survey-report!defaultReport.action?surveyId=${surveyId }" class="dw_btn025 tabpic active"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
 									<%-- <a href="${ctx }/da/survey-report!lineChart.action?surveyId=${surveyId }" class="dw_btn025 linepic" style="margin-left: 10px;"><i class="fa fa-bar-chart"></i>&nbsp;柱状图</a>
 									<a href="${ctx }/da/survey-report!pieChart.action?surveyId=${surveyId }" class="dw_btn025 piepic " style="margin-left: 10px;"><i class="fa fa-pie-chart"></i>&nbsp;饼状图</a> --%> 
 								</div>
@@ -967,7 +967,7 @@ function substring(json) {
 											<table class="suQuTable" border="0" cellpadding="0" cellspacing="0" style="border: none! important;margin-top: 8px;">
 													<tr>
 														<td width="15px">&nbsp;</td>
-														<td class="bfbTd">回答数：${en.anCount }条&nbsp;&nbsp;<a href="#" >查看</a></td>
+														<td class="bfbTd">回答数：${en.anCount }条&nbsp;&nbsp;<a href="#" class="fb_answer" >查看</a></td>
 														<td colspan="4">&nbsp;</td>
 													</tr>
 												</table>
@@ -1450,7 +1450,6 @@ function substring(json) {
 <script type="text/javascript">
 $(document).ready(function(){
 	//.quTrOptions  td
-	
 });
 </script>
 </body>

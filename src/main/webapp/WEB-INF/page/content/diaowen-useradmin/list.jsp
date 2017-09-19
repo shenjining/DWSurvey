@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	
 $(document).ready(function(){
-	
+	currentMenu("usermanager");
 	$(".checkboxAll").unbind();
 	$(".checkboxAll").change(function(){
 		if($(this).prop("checked")){
@@ -82,7 +82,7 @@ $(document).ready(function(){
 										<span style="font-size: 14px;vertical-align: middle;">状态&nbsp;</span>
 										<select name="status" style="vertical-align: middle;">
 											<option value="">不限</option>
-											<option value="1">可用</option>
+											<option value="2">可用</option>
 											<option value="0">禁用</option>
 										</select>&nbsp;&nbsp;
 									<span style="font-size: 14px;vertical-align: middle;">用户名&nbsp;</span>
@@ -122,7 +122,7 @@ $(document).ready(function(){
 														<%--<td align="left">${en.email }</td>--%>
 														<td align="left"><fmt:formatDate value="${en.createTime }" pattern="yyyy年MM月dd日 HH:mm"/></td>
 														<td align="left"><fmt:formatDate value="${en.createTime }" pattern="yyyy年MM月dd日 HH:mm"/></td>
-														<td align="left">${en.status ne 0 ? '可用':'不可用' }</td>
+														<td align="left">${en.status eq 0 ? '不可用':'可用' }</td>
 														<td align="center">
 															<a class="btn btn-default" href="${ctx }/sy/user/nosm/user-admin!input.action?id=${en.id}" title="编辑"data-toggle="tooltip" data-placement="top" ><i class="fa fa-pencil-square-o"></i></a>
 															<a class="btn btn-default disUser_a" href="${ctx }/sy/user/nosm/user-admin!delete.action?id=${en.id}" title="禁用"data-toggle="tooltip" data-placement="top" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>

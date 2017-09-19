@@ -4,12 +4,6 @@
  */
 package com.key.common.plugs.xss;
 
-import com.blogspot.radialmind.html.HTMLParser;
-import com.blogspot.radialmind.xss.XSSFilter;
-import com.itextpdf.text.log.SysoCounter;
-
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -76,26 +70,6 @@ public class XssHttpWrapper extends HttpServletRequestWrapper {
        }
        return values;
    }
-
-   /**
-    * @return
-    */
-   /*public Map getParameterMap() {
-       HashMap paramMap = (HashMap) super.getParameterMap();
-       paramMap = (HashMap) paramMap.clone();
-
-       for (Iterator iterator = paramMap.entrySet().iterator(); iterator.hasNext(); ) {
-           Map.Entry entry = (Map.Entry) iterator.next();
-           String[] values = (String[]) entry.getValue();
-           for (int i = 0; i < values.length; i++) {
-               if(values[i] instanceof String){
-                   values[i] = xssEncode((String)values[i]);
-               }
-           }
-           entry.setValue(values);
-       }
-       return paramMap;
-   }*/
 
     /**
      * 从request中获得参数Map，并返回可读的Map
@@ -193,32 +167,7 @@ public class XssHttpWrapper extends HttpServletRequestWrapper {
      * @param s
      * @return
      */
-   private static String xssEncode(String s) {
-        if (s == null || s.isEmpty()) {
-            return s;
-        }
-
-        StringReader reader = new StringReader(s);
-        StringWriter writer = new StringWriter();
-        try {
-            HTMLParser.process(reader, writer, new XSSFilter(), true);
-            return writer.toString();
-        } catch (NullPointerException e) {
-            return s;
-        } catch (Exception ex) {
-            ex.printStackTrace(System.out);
-        }
-        return null;
-    }
-
-
-    /**
-     * 将容易引起xss漏洞的半角字符直接替换成全角字符
-     *
-     * @param s
-     * @return
-     */
-   /* public String xssEncode(String s)
+    public String xssEncode(String s)
     {
         if (s == null || s.isEmpty())
         {
@@ -228,18 +177,27 @@ public class XssHttpWrapper extends HttpServletRequestWrapper {
         String result = stripXSS(s);
         if (null != result)
         {
-            result = escape(result);
+            HttpServletRequest request = (HttpServletRequest) super.getRequest();
+            String requestURI = request.getRequestURI();
+            if(!requestURI.contains("/design")){
+//                try {
+//                    result = URLDecoder.decode(result,"utf-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+                result = escape(result);
+            }
         }
 
         return result;
-    }*/
+    }
 
     /**
      * 插件之所以报 mismatched tree node: EOF expecting错误是因为其对注入的脚本格式有校验
      * @param
      * @return
      */
-    /*private String stripXSS(String value)
+    private String stripXSS(String value)
     {
         if (value != null)
         {
@@ -288,5 +246,5 @@ public class XssHttpWrapper extends HttpServletRequestWrapper {
             value = scriptPattern.matcher(value).replaceAll("");
         }
         return value;
-    }*/
+    }
 }

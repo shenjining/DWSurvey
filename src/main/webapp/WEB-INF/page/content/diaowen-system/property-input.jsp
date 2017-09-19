@@ -12,6 +12,9 @@
 <script type="text/javascript" src="${ctx }/js/dw/uploadify.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+
+	currentMenu("systemset");
+
 	binduploadImg("loginBgfile","loginBgfileQueueid","loginBgfileImgPath","上传");
 	
 	$("#login_bg_div img").hover(function(){
@@ -102,10 +105,12 @@ $(document).ready(function(){
 													<td width="80" align="right" >备案代码</td>
 													<td class="ac-input-td"><input type="text" name="icpCode" value="${icpCode }"> </td>
 												</tr>
-												<%-- <tr>
-													<td width="80" align="right" valign="top">统计代码</td>
-													<td class="ac-input-td"><textarea name="tongjiCode" rows="3" cols="25" style="border-radius: 2px;border: 1px solid #B2B2B2;font-size: 18px;color: #727779;width: 320px;padding: 5px;outline: none;" >${tongjiCode }</textarea> </td>
-												</tr> --%>
+												<%--
+												<tr style="display: none;">
+													<td width="80" align="right" >内容版权</td>
+													<td class="ac-input-td"><input type="text" name="contentCopyright" value="${contentCopyright }" ></td>
+												</tr>
+												<tr><td>&nbsp;</td><td class="ac-input-td" valign="top" style="padding-top: 0px;">所属机构名称如：调问网 </td></tr>--%>
 											</table>
 										</td>
 										<td valign="top" align="left" >
